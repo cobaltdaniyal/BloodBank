@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "225057676759",
+    "project_id": "donatebloodrn",
+    "storage_bucket": "donatebloodrn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225057676759:android:cfd4cc1c78e19fd0e83f92",
+        "android_client_info": {
+          "package_name": "com.bloodbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225057676759-jthrhhgsi5dvqkvechqo0vbsgssqcir5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvv3wjDdndOAdW5oHHUk1Rm0hdGBad5m0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225057676759-jthrhhgsi5dvqkvechqo0vbsgssqcir5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
