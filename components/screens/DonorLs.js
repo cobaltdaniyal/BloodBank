@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Alert } from 'react-native';
 import database from '@react-native-firebase/database';
 import { Spinner, CardItem, Button } from 'native-base';
+import Clipboard from '@react-native-community/clipboard';
 
 export default class DonorLs extends Component {
 
@@ -16,12 +17,9 @@ export default class DonorLs extends Component {
             .on('value', (data) => {
                 setTimeout(() => {
                     for (var key in data.val()) {
-                        if(data.val()[key] !== this.state.donors.id){
                             this.setState({
                                 donors: [data.val()[key], ...this.state.donors],
                             })
-                        }
-                        // console.log(data.val()[key])
                     }
                     this.setState({
                         isData: true
@@ -32,7 +30,6 @@ export default class DonorLs extends Component {
 
     list = () => {
         const { donors, isData } = this.state;
-        console.log(donors);
         return (
             isData ? donors.map((donor, id) => {
                 return (
@@ -56,7 +53,7 @@ export default class DonorLs extends Component {
                             </CardItem>
                             <View style={{ borderBottomWidth: 1, borderBottomColor: 'grey', paddingBottom: 10 }}>
                                 <CardItem >
-                                    <Button style={{ padding: 10, backgroundColor: 'pink', borderRadius:5 }}>
+                                    <Button onPress={() => { Clipboard.setString(donor.contact); Alert.alert('Text Copied') }} style={{ padding: 10, backgroundColor: 'pink', borderRadius: 5 }}>
                                         <Text style={{ fontWeight: 'bold' }}>Contact : </Text>
                                         <Text style={styles.donorText}> {donor.contact}</Text>
                                     </Button>

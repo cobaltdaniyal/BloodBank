@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
 import database from '@react-native-firebase/database';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, BackHandler, Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import DonorLs from './DonorLs'
 
@@ -12,18 +12,33 @@ export default class Dashboard extends Component {
         currentUser: ''
     }
 
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+        ]);
+        return true;
+    };
+
     componentDidMount() {
         database()
             .ref('/users')
             .on('value', function (data) {
-                console.log(data)
-            })
+            }),
+            this.backHandler = BackHandler.addEventListener(
+                "hardwareBackPress",
+                this.backAction
+            );
     }
     signOut = () => {
         auth()
             .signOut()
             .then(() => {
-                alert('User signed out!')
+               Alert.alert('User signed out!')
                 this.props.navigation.navigate('Home')
             });
     }

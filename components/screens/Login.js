@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
 
@@ -11,21 +11,21 @@ export default class Login extends Component {
     componentDidMount() {
         auth().onAuthStateChanged((user) => {
             if (user) {
-                this.props.navigation.navigate('Donor');
+                this.props.navigation.navigate('Dashboard');
             }
         })
     }
     signInFunc = () => {
         if (this.state.email === "" || this.state.email === " " || this.state.email === undefined) {
-            alert("email can't be empty!")
+           Alert.alert("email can't be empty!")
         } else if (this.state.password === "" || this.state.password === " " || this.state.password === undefined) {
-            alert("passwod can't be empty!")
+           Alert.alert("passwod can't be empty!")
         } else {
             auth()
                 .signInWithEmailAndPassword(this.state.email, this.state.password)
                 .then(() => {
-                    this.props.navigation.navigate('DonorLs');
-                    alert('User signed in!');
+                    this.props.navigation.navigate('Dashboard');
+                   Alert.alert('User signed in!');
                 })
                 .catch(error => {
                     alert(error);

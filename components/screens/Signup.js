@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
@@ -12,20 +12,20 @@ export default class Signup extends Component {
     componentDidMount() {
         auth().onAuthStateChanged((user) => {
             if (user) {
-                this.props.navigation.navigate('DonorLs');
+                this.props.navigation.navigate('Dashboard');
             }
         })
     }
     signupFunc = () => {
         if (this.state.email === "" || this.state.email === " " || this.state.email === undefined) {
-            alert("email can't be empty!")
+            Alert.alert("email can't be empty!")
         } else if (this.state.password === "" || this.state.password === " " || this.state.password === undefined) {
-            alert("passwod can't be empty!")
+            Alert.alert("passwod can't be empty!")
         } else {
             auth()
                 .createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(() => {
-                    alert('User account created & signed in!');
+                    Alert.alert('User account created & signed in!');
                     this.props.navigation.navigate('Dashboard');
                     database()
                         .ref('/users')
