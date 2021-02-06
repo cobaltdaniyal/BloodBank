@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Text, Button, View } from 'native-base';
 import database from '@react-native-firebase/database';
 import { StyleSheet, Image, BackHandler, Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
@@ -13,7 +13,7 @@ export default class Dashboard extends Component {
     }
 
     backAction = () => {
-        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        Alert.alert("Are you sure you want to go back?", [
             {
                 text: "Cancel",
                 onPress: () => null,
@@ -38,32 +38,35 @@ export default class Dashboard extends Component {
         auth()
             .signOut()
             .then(() => {
-               Alert.alert('User signed out!')
+                Alert.alert('User logged out!')
                 this.props.navigation.navigate('Home')
             });
     }
     Donor = () => {
         this.props.navigation.navigate('Donor')
     }
-
     render() {
         return (
-            <Container>
+            <Container style={{ flexDirection: 'row' }} >
                 <Content >
                     <Card >
                         <CardItem style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Body>
-                                <Image source={logo} style={{ width: 120, height: 50 }}></Image>
+                            <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <View>
+                                    <Image source={logo} style={{ width: 140, height: 70 }}></Image>
+                                </View>
                             </Body>
-                            <Button rounded style={{ backgroundColor: '#d6004e', marginRight: 5 }} onPress={() => this.Donor()}>
-                                <Text style={{ fontSize: 12 }}>Be a Donor</Text>
-                            </Button>
-
-                            <Button rounded style={{ backgroundColor: '#d6004e' }} onPress={() => this.signOut()}>
-                                <Text style={{ fontSize: 12 }}>Sign Out</Text>
-                            </Button>
+                            <View style={{ flexDirection: 'column' }}>
+                                <Button rounded style={{ backgroundColor: '#d6004e', margin: 1, width: 170, justifyContent: 'center' }} onPress={() => this.Donor()}>
+                                    <Text style={{ fontSize: 12 }}>Become a Donor</Text>
+                                </Button>
+                                <Button rounded style={{ backgroundColor: '#d6004e', margin: 1, width: 170, justifyContent: 'center' }} onPress={() => this.signOut()}>
+                                    <Text style={{ fontSize: 12 }}>Log Out</Text>
+                                </Button>
+                            </View>
                         </CardItem>
                     </Card>
+                
                     <DonorLs />
                 </Content>
             </Container>

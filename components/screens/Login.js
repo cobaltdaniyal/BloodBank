@@ -25,7 +25,7 @@ export default class Login extends Component {
                 .signInWithEmailAndPassword(this.state.email, this.state.password)
                 .then(() => {
                     this.props.navigation.navigate('Dashboard');
-                   Alert.alert('User signed in!');
+                   Alert.alert('User logged in!');
                 })
                 .catch(error => {
                     alert(error);

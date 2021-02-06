@@ -21,7 +21,6 @@ function Navigation() {
                 <Stack.Screen name="Signup" component={Signup} options={{ headerStyle: { backgroundColor: '#d6004e', }, }} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: null, headerBackTitle: '' }} />
                 <Stack.Screen name="Donor" component={Donor} options={{ headerStyle: { backgroundColor: '#d6004e', }, }} />
-
             </Stack.Navigator>
         </NavigationContainer>
     );

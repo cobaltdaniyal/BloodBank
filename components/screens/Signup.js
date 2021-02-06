@@ -25,7 +25,7 @@ export default class Signup extends Component {
             auth()
                 .createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(() => {
-                    Alert.alert('User account created & signed in!');
+                    Alert.alert('User account created & logged in!');
                     this.props.navigation.navigate('Dashboard');
                     database()
                         .ref('/users')
